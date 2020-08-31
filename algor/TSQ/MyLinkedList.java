@@ -46,7 +46,7 @@ public class MyLinkedList<AnyType> implements Iterator<AnyType>{
         return true;
     }
     public void add(int idx, AnyType x) {
-
+        addBefore(getNode(idx, 0, size()), x);
     }
 
     public void addBefore(Node<AnyType> p, AnyType x) {
@@ -63,18 +63,36 @@ public class MyLinkedList<AnyType> implements Iterator<AnyType>{
     private Node<AnyType> getNode(int idx) {
         return getNode(idx, 0, size()-1);
     }
+    // 获取目标结点
+    // 若索引在前半段，则依次向后遍历前半部分链表
+    // 若索引在后半段，则依次从后往前遍历后半部分链表
     private Node<AnyType> getNode(int idx, int lower, int upper) {
         Node<AnyType> p;
         if (idx < lower || idx > upper) {
             throw new IndexOutOfBoundsException();
         }
 
-        if (condition) {
-            
+        if (idx < size() / 2) {
+            p = head.next;
+            for (int i = 0; i < idx; i++) {
+                p = p.next;
+            }
         }
+        else {
+            p = tail;
+            for (int i = size(); i > idx; i--) {
+                p = p.prev;
+            }
+        }
+        return p;
     }
 
-    public AnyType set(int idx, AnyType val) {}
+    public AnyType set(int idx, AnyType val) {
+        Node<AnyType> p = getNode(idx);
+        AnyType oldVal = p.data;
+        p.data = val;
+        return oldVal;
+    }
 
     public AnyType remove(Node<AnyType> p) {
         p.next.prev = p.prev;
@@ -83,6 +101,10 @@ public class MyLinkedList<AnyType> implements Iterator<AnyType>{
         modCount++;
 
         return p.data;
+    }
+
+    private class LinkendListIterator implements Iterator<AnyType> {
+        
     }
 
 }

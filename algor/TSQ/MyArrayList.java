@@ -22,7 +22,7 @@ public class MyArrayList<AnyType> implements Iterable<AnyType> {
         ensureCapacity(DEFAULT_CAPACITY);
     }
 
-    // 针对传入的新容量，创建新数组
+    // 针对传入的新容量值，创建新数组
     public void ensureCapacity(int newCapacity) {
         if (newCapacity < n) return;
         AnyType[] oldItem = items;
@@ -132,7 +132,6 @@ public class MyArrayList<AnyType> implements Iterable<AnyType> {
         array.add(41);
         array.add(55);
         array.print();
-
     }
 
 }
