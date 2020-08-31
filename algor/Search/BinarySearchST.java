@@ -1,4 +1,4 @@
-package algor.Ch03Search;
+package algor.Search;
 
 import java.util.LinkedList;
 import java.util.Queue;

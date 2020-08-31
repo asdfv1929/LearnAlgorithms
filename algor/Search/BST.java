@@ -1,4 +1,4 @@
-package algor.Ch03Search;
+package algor.Search;
 
 /**
  * 二叉查找树

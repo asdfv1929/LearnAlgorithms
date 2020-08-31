@@ -1,4 +1,4 @@
-package algor.Ch04Graph;
+package algor.Graph;
 
 /**
  * 使用深度优先搜索查找图中的路径

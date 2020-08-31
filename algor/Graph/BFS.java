@@ -1,4 +1,4 @@
-package algor.Ch04Graph;
+package algor.Graph;
 
 public class BFS {
     
