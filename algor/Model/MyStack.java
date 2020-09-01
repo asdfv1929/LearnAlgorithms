@@ -3,15 +3,18 @@ package algor.Model;
 import java.util.EmptyStackException;
 import java.util.Iterator;
 
+/**
+ * 栈的数组实现
+ * 可动态调整数组大小
+*/
 public class MyStack<E> implements Iterable<E>{
-    private E[] elementData;        // 栈元素
+    private E[] elementData;        // 栈元素数组
     private int elementCount = 0;   // 元素数量
-
+    // 构造函数初始化元素数组
     public MyStack() {
         this.elementData = (E[]) new Object[1];
     }
-
-    // 调整大小
+    // 调整数组大小
     private void resize(int newCapacity) {
         E[] temp = (E[]) new Object[newCapacity];
         for (int i = 0; i < elementCount; i++) {
@@ -19,18 +22,20 @@ public class MyStack<E> implements Iterable<E>{
         }
         elementData = temp;
     }
-
+    // 入栈
     public E push(E item) {
         addElement(item);
         return item;
     }
+    // 添加元素
+    // 若当前元素数量与数组大小相等，则进行扩容
     private synchronized void addElement(E obj) {
         if (elementCount == elementData.length) {
             resize(2 * elementData.length);
         }
         elementData[elementCount++] = obj;
     }
-
+    //出栈
     public E pop() {
         E obj;
         int len = size();
@@ -39,7 +44,7 @@ public class MyStack<E> implements Iterable<E>{
         removeElementAt(len - 1);
         return obj;
     }
-
+    // 删除元素
     public synchronized void removeElementAt(int index) {
         if (index >= elementCount) {
             throw new ArrayIndexOutOfBoundsException(index + " >= " + elementCount);
@@ -57,6 +62,7 @@ public class MyStack<E> implements Iterable<E>{
             resize(elementData.length/2);
         }
     }
+    // 返回栈顶元素
     @SuppressWarnings("unchecked")
     public synchronized E peek() {
         int len = size();
@@ -68,11 +74,7 @@ public class MyStack<E> implements Iterable<E>{
 
     public synchronized int size() { return elementCount; }
 
-    public boolean isEmpty() {
-        return size() == 0;
-    }
-
-    // public synchronized int search() {}
+    public boolean isEmpty() { return size() == 0; }
 
     public void print() {
         for (int i = 0; i < elementCount; i++) {
