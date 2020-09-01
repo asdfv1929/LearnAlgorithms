@@ -1,4 +1,4 @@
-package algor.TSQ;
+package algor.Model;
 
 import java.util.Iterator;
 

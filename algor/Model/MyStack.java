@@ -1,13 +1,23 @@
-package algor.TSQ;
+package algor.Model;
 
 import java.util.EmptyStackException;
+import java.util.Iterator;
 
-public class MyStack<E> {
-    private Object[] elementData;
-    private int elementCount = 0;
+public class MyStack<E> implements Iterable<E>{
+    private E[] elementData;        // 栈元素
+    private int elementCount = 0;   // 元素数量
 
     public MyStack() {
-        this.elementData = new Object[10];
+        this.elementData = (E[]) new Object[1];
+    }
+
+    // 调整大小
+    private void resize(int newCapacity) {
+        E[] temp = (E[]) new Object[newCapacity];
+        for (int i = 0; i < elementCount; i++) {
+            temp[i] = elementData[i];
+        }
+        elementData = temp;
     }
 
     public E push(E item) {
@@ -15,7 +25,9 @@ public class MyStack<E> {
         return item;
     }
     private synchronized void addElement(E obj) {
-
+        if (elementCount == elementData.length) {
+            resize(2 * elementData.length);
+        }
         elementData[elementCount++] = obj;
     }
 
@@ -41,6 +53,9 @@ public class MyStack<E> {
         }
         elementCount--;
         elementData[elementCount] = null;
+        if (elementCount > 0 && elementCount == elementData.length/4) {
+            resize(elementData.length/2);
+        }
     }
     @SuppressWarnings("unchecked")
     public synchronized E peek() {
@@ -66,6 +81,15 @@ public class MyStack<E> {
         System.out.println();
     }
 
+    public Iterator<E> iterator() {
+        return new ReverseArrayIterator();
+    }
+    private class ReverseArrayIterator implements Iterator<E> {
+        private int i = elementCount;
+        public boolean hasNext() { return i > 0; }
+        public E next() { return elementData[--i]; }
+        public void remove() { }
+    }
 
     public static void main(String[] args) {
         MyStack<Integer> stack = new MyStack<>();
@@ -73,6 +97,8 @@ public class MyStack<E> {
         stack.push(5);
         stack.push(11);
         stack.push(7);
+        stack.push(1);
+        stack.push(8);
         stack.print();
         stack.pop();
         stack.print();
