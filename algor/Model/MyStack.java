@@ -90,7 +90,7 @@ public class MyStack<E> implements Iterable<E>{
         private int i = elementCount;
         public boolean hasNext() { return i > 0; }
         public E next() { return elementData[--i]; }
-        public void remove() { }
+        // public void remove() { }
     }
 
     public static void main(String[] args) {
