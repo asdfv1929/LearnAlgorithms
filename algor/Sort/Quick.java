@@ -35,6 +35,10 @@ public class Quick extends Template{
         return j;
     }
 
+
+    // 非递归的快速排序
+    
+
     public static void main(String[] args) {
         Integer[] arr = {5, 3, 2, 6, 8, 4, 1};
         Quick.sort(arr);
