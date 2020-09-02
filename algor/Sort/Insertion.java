@@ -13,8 +13,8 @@ public class Insertion extends Template {
 
     public static void main(String[] args) {
         Integer[] arr = {5, 3, 2, 6, 8, 4};
-        Selection.sort(arr);
-        Selection.print(arr);
+        Insertion.sort(arr);
+        Insertion.print(arr);
         if (isSorted(arr)) 
             System.out.println("Sorted");
     }
