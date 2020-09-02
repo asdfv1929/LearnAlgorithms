@@ -5,7 +5,7 @@ import java.util.Iterator;
 /**
  * 双向链表的简单实现
 */
-public class MyLinkedList<AnyType> implements Iterator<AnyType>{
+public class MyLinkedList<AnyType> implements Iterable<AnyType>{
     private int size;
     private Node<AnyType> head;
     private Node<AnyType> tail;
@@ -103,8 +103,17 @@ public class MyLinkedList<AnyType> implements Iterator<AnyType>{
         return p.data;
     }
 
-    private class LinkendListIterator implements Iterator<AnyType> {
-        
+    public Iterator<AnyType> iterator() {
+        return new ListIterator();
+    }
+    private class ListIterator implements Iterator<AnyType> {
+        private Node current = head;
+        public boolean hasNext() { return current != null; }
+        public AnyType next() {
+            AnyType item = (AnyType)current.data;
+            current = current.next;
+            return item;
+        }
     }
 
 }

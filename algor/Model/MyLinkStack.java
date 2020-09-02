@@ -1,5 +1,6 @@
 package algor.Model;
 
+import java.util.Iterator;
 
 /**
  * 栈的链表实现
@@ -30,5 +31,38 @@ public class MyLinkStack<E> implements Iterable<E>{
         first = first.next;
         elementCount--;
         return item;
+    }
+
+    public void print() {
+        for (Node curr = first; curr != null; curr = curr.next) {
+            System.out.print(curr.val + " ");
+        }
+        System.out.println();
+    }
+
+    public Iterator iterator() { return new listIterator(); }
+    private class listIterator implements Iterator<E> {
+        private Node current = first;
+        public boolean hasNext() { return current != null; }
+        public E next() {
+            E item = current.val;
+            current = current.next;
+            return item;
+        }
+    }
+
+    public static void main(String[] args) {
+        MyLinkStack<Integer> stack = new MyLinkStack<>();
+        stack.push(12);
+        stack.push(5);
+        stack.push(7);
+        stack.push(1);
+        stack.push(9);
+        stack.print();
+
+        stack.pop();
+        stack.print();
+        // 9 1 7 5 12
+        // 1 7 5 12
     }
 }

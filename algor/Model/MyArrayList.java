@@ -22,6 +22,7 @@ public class MyArrayList<AnyType> implements Iterable<AnyType> {
         ensureCapacity(DEFAULT_CAPACITY);
     }
 
+    @SuppressWarnings("unchecked")
     // 针对传入的新容量值，创建新数组
     public void ensureCapacity(int newCapacity) {
         if (newCapacity < n) return;
