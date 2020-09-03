@@ -2,11 +2,20 @@ package algor.Sort;
 
 public class Insertion extends Template {
     
+    // public static void sort(Comparable[] arr) {
+    //     int len = arr.length;
+    //     for (int i = 1; i < len; i++) {
+    //         for (int j = i; j > 0 && less(arr[j], arr[j-1]); j--) {
+    //             exch(arr, j, j-1);
+    //         }
+    //     }
+    // }
+
     public static void sort(Comparable[] arr) {
         int len = arr.length;
-        for (int i = 1; i < len; i++) {
-            for (int j = i; j > 0 && less(arr[j], arr[j-1]); j--) {
-                exch(arr, j, j-1);
+        for (int i = 0; i < len; i++) {
+            for (int j = i; j > 0 && less(); j--) {
+                
             }
         }
     }
