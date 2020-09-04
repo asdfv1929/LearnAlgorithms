@@ -57,6 +57,13 @@ public class Heap<Key extends Comparable<Key>>{
         }
     }
 
+//    private void sort(Comparable[] a) {
+//        int N = a.length;
+//        for (int k = N/2; k >= 1; k--) {
+//            sink(a, k, );
+//        }
+//    }
+
     public static void main(String[] args) {
         Integer[] arr = {5, 3, 2, 6, 8, 4, 1};
 //        Heap.sort(arr);

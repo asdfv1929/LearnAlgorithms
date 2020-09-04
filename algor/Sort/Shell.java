@@ -24,7 +24,6 @@ public class Shell extends Template {
         Integer[] arr = {5, 3, 2, 6, 8, 4};
         Shell.sort(arr);
         Shell.print(arr);
-        if (isSorted(arr)) 
-            System.out.println("Sorted");
+        assert isSorted(arr);
     }
 }
