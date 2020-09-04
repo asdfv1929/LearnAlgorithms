@@ -18,6 +18,7 @@ public class MyLinkStack<E> implements Iterable<E>{
 
     public int size() { return elementCount; }
 
+    // 入栈，新建结点，将其next指针指向原first结点，成为新first
     public void push(E item) {
         Node oldFirst = first;
         first = new Node();
@@ -26,6 +27,7 @@ public class MyLinkStack<E> implements Iterable<E>{
         elementCount++;
     }
 
+    // 出栈
     public E pop() {
         E item = first.val;
         first = first.next;

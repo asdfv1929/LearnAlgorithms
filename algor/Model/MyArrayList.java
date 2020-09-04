@@ -5,7 +5,6 @@ import java.util.NoSuchElementException;
 
 /*
  * ArrayList的简单实现
- * @param <AnyType>
 */
 public class MyArrayList<AnyType> implements Iterable<AnyType> {
     private final int DEFAULT_CAPACITY = 10;

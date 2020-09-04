@@ -1,5 +1,9 @@
 package algor.Model;
 
+/**
+ * 队列的链表实现
+ * 
+*/
 public class MyQueue<E> {
     private Node first;
     private Node last;
@@ -12,6 +16,7 @@ public class MyQueue<E> {
     public boolean isEmpty() { return first == null; }
     public int size() { return n; }
 
+    // 末尾入队列
     public void enqueue(E item) {
         Node oldlast = last;
         last = new Node();
@@ -25,6 +30,7 @@ public class MyQueue<E> {
         n++;
     }
 
+    // 首部出队列
     public E dequeue() {
         E item = first.item;
         first = first.next;

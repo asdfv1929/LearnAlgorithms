@@ -1,7 +1,10 @@
 package algor.Model;
 
 import java.util.Iterator;
-
+/**
+ * 背包
+ * 元素只进不出
+*/
 public class Bag<Item> implements Iterable<Item> {
     private Node first;
     private class Node {
