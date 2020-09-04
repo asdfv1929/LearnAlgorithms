@@ -1,7 +1,7 @@
 package algor.Graph;
 
 /**
- * 使用深度优先搜索查找图中的路径
+ * 深度优先搜索
  * 
 */
 public class DFS {
