@@ -1,72 +1,27 @@
 package algor.Sort;
 
-/**
- * 堆排序
- * 由下至上的堆有序化（上浮）
- * 由上至下的堆有序化（下沉）
-*/
-public class Heap<Key extends Comparable<Key>>{
-    private Key[] pq;
-    private int n = 0;
+public class Heap extends Template{
 
-    public Heap(int maxN) {
-        pq = (Key[]) new Comparable[maxN+1];
+    private static void sink(Comparable[] a, int i, int j) {
+
     }
 
-    public boolean isEmpty() { return n == 0; }
-    public int size() { return n; }
-
-    public void insert(Key v) {
-        pq[++n] = v;
-        swim(n);
-    }
-
-    public Key  delMax() {
-        Key max = pq[1];
-        exch(1, n--);
-        pq[n+1] = null;
-        sink(1);
-        return max;
-    }
-
-    private boolean less(int i, int j) {
-        return pq[i].compareTo(pq[j]) < 0;
-    }
-
-    private void exch(int i, int j) {
-        Key t = pq[i];
-        pq[i] = pq[j];
-        pq[j] = t;
-    }
-
-    // 从下往上，当子节点值比父节点值大，上浮
-    private void swim(int k) {
-        while (k > 1 && less(k/2, k)) {
-            exch(k/2, k);
-            k = k / 2;
+    public static void sort(Comparable[] a) {
+        int N = a.length;
+        for (int k = N/2; k >= 1; k--) {
+            sink(a, k, N);
+            while (N > 1) {
+                exch(a, 1, N--);
+                sink(a, 1, N);
+            }
         }
     }
-    // 
-    private void sink(int k) {
-        while (2 * k <= n) {
-            int j = 2 * k;
-            if (j < n && less(j, j+1)) j++;
-            if (!less(k, j)) break;
-            exch(k, j);
-            k = j;
-        }
-    }
-
-//    private void sort(Comparable[] a) {
-//        int N = a.length;
-//        for (int k = N/2; k >= 1; k--) {
-//            sink(a, k, );
-//        }
-//    }
 
     public static void main(String[] args) {
-        Integer[] arr = {5, 3, 2, 6, 8, 4, 1};
-//        Heap.sort(arr);
-//        Heap.print(arr);
+        Integer[] arr = {5, 3, 2, 6, 8, 4};
+        Heap.sort(arr);
+        Heap.print(arr);
+        assert isSorted(arr);
     }
+
 }
