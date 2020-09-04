@@ -7,7 +7,7 @@ package algor.Graph;
 public class DFS {
     private boolean[] marked;
     private int[] edgeTo;
-    private final int s;
+//    private final int s;
 
-    public DFS(Graph )
+
 }

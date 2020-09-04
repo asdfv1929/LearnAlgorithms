@@ -82,8 +82,8 @@ public class BST<Key extends Comparable<Key>, Value> {
         else if (t < k) return select(x.right, k-t-1);
         else return x;
     }
-    public int rank() {}
-    public void delete() {}
-    public Key[] keys() {}
+//    public int rank() {}
+//    public void delete() {}
+//    public Key[] keys() {}
 
 }

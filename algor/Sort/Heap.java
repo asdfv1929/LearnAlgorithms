@@ -59,7 +59,7 @@ public class Heap<Key extends Comparable<Key>>{
 
     public static void main(String[] args) {
         Integer[] arr = {5, 3, 2, 6, 8, 4, 1};
-        Heap.sort(arr);
-        Heap.print(arr);
+//        Heap.sort(arr);
+//        Heap.print(arr);
     }
 }
