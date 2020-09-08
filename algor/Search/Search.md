@@ -7,8 +7,6 @@
 size(x) = size(x.left) + size(x.right) + 1
 
 
-
-
 # 2-3树
 
 # 红黑树
