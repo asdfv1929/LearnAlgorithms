@@ -87,15 +87,6 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> {
         return h;
     }
 
-    private Node moveRedLeft(Node h) {
-        flipColors(h);
-        if (isRed(h.right.left)) {
-            h.right = rotateRight(h.right);
-            h = rotateLeft(h);
-        }
-        return h;
-    }
-
     public Node balance(Node h) {
         if (isRed(h.right)) h = rotateLeft(h);
 
@@ -111,6 +102,23 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> {
         return h;
     }
 
+    // 假设结点h为红色，h.left和h.left.left都是黑色
+    // 将h.left或者h.left的子结点之一变红
+    private Node moveRedLeft(Node h) {
+        flipColors(h);
+        if (isRed(h.right.left)) {
+            h.right = rotateRight(h.right);
+            h = rotateLeft(h);
+        }
+        return h;
+    }
+    private Node moveRedRight(Node h) {
+        flipColors(h);
+        if (!isRed(h.left.left)) h = rotateRight(h);
+        return h;
+    }
+
+    // 删除最小键
     public void deleteMin() {
         if (!isRed(root.left) && !isRed(root.right))
             root.color = RED;
@@ -125,6 +133,7 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> {
         return balance(h);
     }
 
+    // 删除指定键
     public void delete(Key key) {
         if (!isRed(root.left) && !isRed(h.right))
             root.color = RED;
@@ -132,6 +141,21 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> {
         if (!isEmpty()) root.color = BLACK;
     }
     private Node delete(Node h, Key key) {
-
+        if (key.compareTo(h.key) < 0) {
+            if (!isRed(h.left) && !isRed(h.left.left))  h = moveRedLeft(h);
+            h.left = delete(h.left, key);
+        }
+        else {
+            if (isRed(h.left)) h = rotateRight(h);
+            if (key.compareTo(h.key) == 0 && (h.right == null)) return null;
+            if (!isRed(h.right) && !isRed(h.right.left)) h = moveRedRight(h);
+            if (key.compareTo(h.key) == 0) {
+                h.val = get(h.right, min(h.right).key);
+                h.key = min(h.right).key;
+                h.right = deleteMin(h.right);
+            }
+            else h.right = delete(h.right, key);
+        }
+        return balance(h);
     }
 }
