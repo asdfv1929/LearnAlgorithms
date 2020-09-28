@@ -2,7 +2,7 @@ package algor.Model;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
-
+import java.util.HashMap;
 /*
  * ArrayList的简单实现
 */

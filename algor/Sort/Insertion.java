@@ -31,18 +31,19 @@ public class Insertion extends Template {
         for (int i = 1; i < len; i++) {
             int l = 0, r = i - 1;
             Comparable temp = arr[i];
-            int k = rank(arr, l, r);
-            for (int j = i - 1; j >= l; j--) {
-                arr[j+1] = arr[j];
+            int k = rank(arr, l, r, temp);
+
+            for (int j = i; j > k; j--) {
+                arr[j] = arr[j-1];
             }
             arr[k] = temp;
         }
     }
     // 二分查找
-    public static int rank(Comparable[] b, int lo, int hi) {
+    public static int rank(Comparable[] b, int lo, int hi, Comparable target) {
         while (lo <= hi) {
             int mid = lo + (hi - lo) / 2;
-            int cmp = b[lo].compareTo(b[mid]);
+            int cmp = target.compareTo(b[mid]);
             if (cmp < 0) { hi = mid - 1; }
             else if (cmp > 0) { lo = mid + 1; } 
             else { return mid; }
